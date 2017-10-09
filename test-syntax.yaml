@@ -1,0 +1,55 @@
+filetype: Test-lang
+
+detect:
+    filename: "\\.tst$"
+
+rules:
+
+      # Types
+    - type: "\\b(?i:(int|float|bool|char|string|unit))\\b"
+
+      # Several lines of statements. copy more lines if needed
+    - statement: "\\b(if|then|else)\\b"
+    - statement: "\\b(for|and|or)\\b"
+
+      # Specialy highlighted keywords
+    - special: "\\b(let|rec|function|in)\\b"
+
+      # Various symbols
+    - symbol: "(\\||@|!|:|::|_|~|=|\\\\|;|\\(\\)|||\\[|\\]|\\{|\\})"
+
+      # Operators
+    - symbol.operator: "(==|/=|&&|\\|\\||<|>|<=|>=)"
+
+      # language constants
+    - constant: "(Nothing|Just|LT|EQ|GT)"
+
+    - constant.bool: "\\b(true|false)\\b"
+
+      # Strings "... "
+    - constant.string:
+        start: "\""
+        end: "\""
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+      # Char '.'
+    - constant.string:
+        start: "'"
+        end: "'"
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+
+      # multi line comment (* ... *)
+    - comment:
+        start: "\\(\\*"
+        end: "\\*\\)"
+        rules:
+            - todo: "(TODO|XXX|FIXME):?"
+
+      # single line comment # ...
+    - comment:
+        start: "#"
+        end: "$"
+        rules: []

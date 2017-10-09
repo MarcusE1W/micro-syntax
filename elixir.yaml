@@ -1,0 +1,75 @@
+filetype: Elixir
+
+detect:
+    filename: "\\.exs$"
+
+rules:
+    # Keywords
+
+
+    # Types
+    # - type: "\\b(?i:(Float|Int|Number|String))\\b"
+
+
+    # - statement: "[ ](|||||)[ ]"
+
+    - statement: "\\b(alias|case|cond|def|defmodule|defp|defstruct|defprotocol)\\b"
+    - statement: "\\b(defimpl|defmacro|quote|unquote|receive|fn|do|else|else if)\\b"
+    - statement: "\\b(end|false|if|in|next|rescue|for|true|unless|when)\\b"
+    - statement: "\\b(nil|raise|throw|try|catch|after|with|require)\\b"
+    - statement: "\\b(use|__MODULE__|__FILE__)\\b"
+    - statement: "\\b(__DIR__|__ENV__|__CALLER__)\\b"
+
+    - special: "\\b(do|end)\\b"
+                                
+      # - statement: "(^import|^module|^type)[ ]"
+    # - statement: "[ ](case$|of$|if$|then$|else$|import$|let$|in$|type$)"
+
+
+
+#var indentWords = wordObj(['def|defmodule|defp|case|cond|rescue|try|catch|->']);
+
+
+
+      # Various symbols ?? does it work?
+    - symbol: "(\\||@|!|:|_|~|=|\\\\|;|\\(\\)|,|\\[|\\]|\\{|\\})"
+
+      # Operators
+#    - symbol.operator: "(==|/=|&&|\\|\\||<|>|<=|>=)"
+
+      # Various symbols
+#    - special: "(->|<-)"
+#    - symbol: "\\.|\\$"
+
+      # Data constructors
+    # - constant.bool: "\\b(True|False)\\b"
+#   - constant: "(Nothing|Just|Left|Right|LT|EQ|GT)"
+    # - constant: "(Nothing|Just|LT|EQ|GT)"
+
+      # Data classes
+#   - identifier.class: "[ ](Read|Show|Enum|Eq|Ord|Data|Bounded|Typeable|Num|Real|Fractional|Integral|RealFrac|Floating|RealFloat|Monad|MonadPlus|Functor)"
+#   - identifier.class: "[ ](Read|Show|Enum|Eq|Ord|Data|Bounded|Typeable|Num|Real|Fractional|Integral|RealFrac|Floating|RealFloat|Monad|MonadPlus|Functor)"
+
+
+      # Strings
+   # - constant.string:
+   #     start: "\""
+   #     end: "\""
+       # skip: "\\\\."
+       # rules:
+       #     # - constant.specialChar: "\\\\."
+
+      # Comments
+    - comment:
+        start: "#"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME):?"
+
+    # - comment:
+    #     start: "\\{-"
+    #     end: "-\\}"
+    #     rules:
+    #         - todo: "(TODO|XXX|FIXME):?"
+
+    # - identifier.micro: "undefined"

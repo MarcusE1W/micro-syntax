@@ -1,0 +1,79 @@
+filetype: Elm
+
+detect:
+    filename: "\\.elm$"
+
+rules:
+    # Keywords
+#    - statement: "[ ](as|case|of|class|data|default|deriving|do|forall|foreign|hiding|if|then|else|import|infix|infixl|infixr|instance|let|in|mdo|module|newtype|qualified|type|where)[ ]"
+#    - statement: "(^data|^foreign|^import|^infix|^infixl|^infixr|^instance|^module|^newtype|^type)[ ]"
+#    - statement: "[ ](as$|case$|of$|class$|data$|default$|deriving$|do$|forall$|foreign$|hiding$|if$|then$|else$|import$|infix$|infixl$|infixr$|instance$|let$|in$|mdo$|module$|newtype$|qualified$|type$|where$)"
+
+
+# Pascal
+#- type: "\\b(?i:(string|ansistring|widestring|shortstring|char|ansichar|widechar|boolean|byte|shortint|word|smallint|longword|cardinal|longint|integer|int64|single|currency|double|extended))\\b"
+
+    - type: "\\b(?i:(Float|Int|Number|String))\\b"
+
+
+    - statement: "[ ](as|alias|and|case|else|exposing|if|import|in|infixr|let|module|not|of|or|port|then|type|var|where)[ ]"
+    - statement: "(^import|^module|^type)[ ]"
+    - statement: "[ ](case$|of$|if$|then$|else$|import$|let$|in$|type$)"
+
+# 'as', 'alias', 'and', 'case', 'else',
+#  'exposing',   'if', 'in', 'infixr', 'import',
+#  'let', 'module', 'not', 'of', 'or',
+# 'port', 'then', 'type', 'var', 'where'
+
+
+      # Various symbols ?? does it work?
+#    - symbol: "(\\||@|!|:|_|~|=|\\\\|;|\\(\\)|,|\\[|\\]|\\{|\\})"
+    - symbol: "(\\||@|!|:|::|_|~|=|\\\\|;|\\(\\)|,|\\[|\\]|\\{|\\})"
+
+      # Operators
+#    - symbol.operator: "(==|/=|&&|\\|\\||<|>|<=|>=)"
+    - symbol.operator: "(<|>|<=|>=)"
+
+      # Various symbols
+    - special: "(->|<-)"
+#    - symbol: "\\.|\\$"
+
+      # Data constructors
+    - constant.bool: "\\b(True|False)\\b"
+#   - constant: "(Nothing|Just|Left|Right|LT|EQ|GT)"
+    - constant: "(Nothing|Just|LT|EQ|GT)"
+
+      # Data classes
+#   - identifier.class: "[ ](Read|Show|Enum|Eq|Ord|Data|Bounded|Typeable|Num|Real|Fractional|Integral|RealFrac|Floating|RealFloat|Monad|MonadPlus|Functor)"
+#   - identifier.class: "[ ](Read|Show|Enum|Eq|Ord|Data|Bounded|Typeable|Num|Real|Fractional|Integral|RealFrac|Floating|RealFloat|Monad|MonadPlus|Functor)"
+
+
+    # Strings
+    - constant.string:
+        start: "\""
+        end: "\""
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+    # Char
+    - constant.string:
+        start: "'"
+        end: "'"
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+
+      # Comments
+    - comment:
+        start: "--"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME):?"
+
+    - comment:
+        start: "\\{-"
+        end: "-\\}"
+        rules:
+            - todo: "(TODO|XXX|FIXME):?"
+
+    - identifier.micro: "undefined"

@@ -1,0 +1,61 @@
+filetype: Ocaml
+
+detect:
+    filename: "\\.ml$"
+
+rules:
+
+    - type: "\\b(?i:(int|float|bool|char|string|unit))\\b"
+
+
+    - statement: "\\b(and|as|asr|begin|class|closed|constraint|do|done)\\b"
+    - statement: "\\b(downto|else|end|exception|external|failwith|false)\\b"
+    - statement: "\\b(flush|for|fun|function|functor|if|in|include)\\b"
+    - statement: "\\b(inherit|incr|land|let|load|los|lsl|lsr|lxor)\\b"
+    - statement: "\\b(match|method|mod|module|mutable|new|not|of|open)\\b"
+    - statement: "\\b(option|or|parser|private|ref|rec|raise|regexp|sig)\\b"
+    - statement: "\\b(struct|stdout|stdin|stderr|then|to|true|try|type)\\b"
+    - statement: "\\b(val|virtual|when|while|with)\\b"
+
+    - special: "\\b(let|rec|function|in)\\b"
+
+     # Various symbols ?? does it work?
+#    - symbol: "(\\||@|!|:|_|~|=|\\\\|;|\\(\\)|||\\[|\\]|\\{|\\})"
+    - symbol: "(\\||@|!|:|::|_|~|=|\\\\|;|\\(\\)|||\\[|\\]|\\{|\\})"
+
+      # Operators
+#    - symbol.operator: "(==|/=|&&|\\|\\||<|>|<=|>=)"
+    - symbol.operator: "(<|>|<=|>=||>|<|)"
+
+      # Various symbols
+    # - special: "(->|<-)"
+#    - symbol: "\\.|\\$"
+
+      # Data constructors
+    - constant: "(Nothing|Just|LT|EQ|GT)"
+
+    - constant.bool: "\\b(true|false)\\b"
+
+
+    # Strings
+    - constant.string:
+        start: "\""
+        end: "\""
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+    # Char
+    - constant.string:
+        start: "'"
+        end: "'"
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+
+    - comment:
+        start: "\\(\\*"
+        end: "\\*\\)"
+        rules:
+            - todo: "(TODO|XXX|FIXME):?"
+
+    - identifier.micro: "undefined"
