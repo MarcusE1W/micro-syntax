@@ -41,6 +41,7 @@ e.g. `"\\b(?i:(int|float|bool|char|string|unit))\\b"`. To define your own profil
 e.g.
 ``` Yaml
     - type: "\\b(?i:(int|float|bool|char|string|unit))\\b"
+    
     - statement: "\\b(if|then|else)\\b"
     - statement: "\\b(for|and|or)\\b"
 
