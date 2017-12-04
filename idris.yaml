@@ -4,13 +4,17 @@ detect:
     filename: "\\.idr$"
 
 rules:
+
+    # Types
+    - type: "\\b(?i:(Int|Integer|Double|Bool|Char|String|Ptr|Unit))\\b"
+    - type: "\\b(?i:(Nat|Type|Vect|List))\\b"
     # Keywords
     - statement: "[ ](as|case|of|class|data|default|deriving|do|forall|foreign|hiding|if|then|else|import|infix|infixl|infixr|instance|let|in|mdo|module|newtype|qualified|type|where)[ ]"
     - statement: "(^data|^foreign|^import|^infix|^infixl|^infixr|^instance|^module|^newtype|^type)[ ]"
     - statement: "[ ](as$|case$|of$|class$|data$|default$|deriving$|do$|forall$|foreign$|hiding$|if$|then$|else$|import$|infix$|infixl$|infixr$|instance$|let$|in$|mdo$|module$|newtype$|qualified$|type$|where$)"
 
       # Various symbols
-    - symbol: "(\\||@|!|:|_|~|=|\\\\|;|\\(\\)|,|\\[|\\]|\\{|\\})"
+    - symbol: "(\\||@|!|:|::|_|~|=|\\\\|;|\\(\\)|,|\\[|\\]|\\{|\\})"
 
       # Operators
     - symbol.operator: "(==|/=|&&|\\|\\||<|>|<=|>=)"
@@ -33,6 +37,17 @@ rules:
         skip: "\\\\."
         rules:
             - constant.specialChar: "\\\\."
+
+    # Char
+    - constant.string:
+        start: "'"
+        end: "'"
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+
+
+
 
       # Comments
     - comment:

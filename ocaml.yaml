@@ -44,13 +44,6 @@ rules:
         skip: "\\\\."
         rules:
             - constant.specialChar: "\\\\."
-    # Char
-    - constant.string:
-        start: "'"
-        end: "'"
-        skip: "\\\\."
-        rules:
-            - constant.specialChar: "\\\\."
 
     - comment:
         start: "\\(\\*"
